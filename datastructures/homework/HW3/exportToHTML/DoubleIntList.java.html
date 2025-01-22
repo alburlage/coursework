@@ -1,0 +1,235 @@
+<html>
+<head>
+<title>DoubleIntList.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #cf8e6d;}
+.s3 { color: #bcbec4;}
+.s4 { color: #2aacb8;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DoubleIntList.java</font>
+</center></td></tr></table>
+<pre><span class="s0">//DO NOT REMOVE PACKAGE LINE</span>
+<span class="s0">//Without this line autograder will not run correctly.</span>
+<span class="s0">//You can comment it while you work on the problem.</span>
+<span class="s0">//When everything works - uncomment and submit!</span>
+<span class="s0">//package com.gradescope.hw3;</span>
+
+<span class="s2">public class </span><span class="s1">DoubleIntList </span><span class="s2">implements </span><span class="s1">IntList</span><span class="s3">{</span>
+    <span class="s0">//Part 1</span>
+    <span class="s0">//Add appropriate instance variables/fields. In this case, encapsulation is</span>
+    <span class="s0">//adhered to and accessor/mutator methods must be written.</span>
+    <span class="s2">private </span><span class="s1">DoubleIntNode front</span><span class="s3">; </span><span class="s0">// reference to front node</span>
+    <span class="s2">private </span><span class="s1">DoubleIntNode end</span><span class="s3">;</span><span class="s0">// reference to end node</span>
+    <span class="s2">private int </span><span class="s1">size</span><span class="s3">; </span><span class="s0">// num of nodes in list</span>
+
+    <span class="s0">//add constructor</span>
+    <span class="s2">public </span><span class="s1">DoubleIntList</span><span class="s3">(){ </span><span class="s0">// intitializes an empty list</span>
+        <span class="s2">this</span><span class="s3">.</span><span class="s1">front </span><span class="s3">= </span><span class="s2">null</span><span class="s3">;</span>
+        <span class="s2">this</span><span class="s3">.</span><span class="s1">end </span><span class="s3">= </span><span class="s2">null</span><span class="s3">;</span>
+        <span class="s2">this</span><span class="s3">.</span><span class="s1">aize </span><span class="s3">= </span><span class="s4">0</span><span class="s3">;</span>
+
+    <span class="s3">}</span>
+    <span class="s2">public int </span><span class="s1">size</span><span class="s3">(){</span>
+        <span class="s2">return this</span><span class="s3">.</span><span class="s1">size</span><span class="s3">;}</span>
+    <span class="s2">public </span><span class="s1">DoubleIntNode getFront</span><span class="s3">(){</span>
+        <span class="s2">return this</span><span class="s3">.</span><span class="s1">front</span><span class="s3">;}</span>
+    <span class="s2">public </span><span class="s1">DoubleIntNode getEnd</span><span class="s3">(){</span>
+        <span class="s2">return this</span><span class="s3">.</span><span class="s1">end</span><span class="s3">;}</span>
+
+    <span class="s0">//Part 2</span>
+    <span class="s0">//uncomment when directed to, checkIndex method is used in add and remove</span>
+    <span class="s2">public void </span><span class="s1">checkIndex</span><span class="s3">(</span><span class="s2">int </span><span class="s1">index</span><span class="s3">) {</span>
+        <span class="s0">//index should be between 0 and size-1</span>
+        <span class="s2">if </span><span class="s3">(</span><span class="s1">index </span><span class="s3">&lt; </span><span class="s4">0 </span><span class="s3">|| </span><span class="s1">index </span><span class="s3">&gt;= </span><span class="s2">this</span><span class="s3">.</span><span class="s1">size</span><span class="s3">) {</span>
+            <span class="s2">throw new </span><span class="s1">IndexOutOfBoundsException</span><span class="s3">(</span><span class="s5">&quot;index: &quot; </span><span class="s3">+ </span><span class="s1">index </span><span class="s3">+ </span><span class="s5">&quot;and size: &quot; </span><span class="s3">+ </span><span class="s2">this</span><span class="s3">.</span><span class="s1">size</span><span class="s3">);</span>
+        <span class="s3">}</span>
+    <span class="s3">}</span>
+    <span class="s2">public void </span><span class="s1">add</span><span class="s3">(</span><span class="s2">int </span><span class="s1">value</span><span class="s3">) {</span>
+        <span class="s0">//This method adds value to the end of the linked list.</span>
+        <span class="s0">//You are not allowed to use any extra space of O(n) size.</span>
+        <span class="s0">//You can, and should, create helper methods to help with this method.</span>
+        <span class="s1">DoubleIntNode newNode </span><span class="s3">= </span><span class="s2">new </span><span class="s1">DoubleIntNode</span><span class="s3">(</span><span class="s1">value</span><span class="s3">); </span><span class="s0">// creates new node</span>
+        <span class="s2">if </span><span class="s3">(</span><span class="s2">this</span><span class="s3">.</span><span class="s1">front </span><span class="s3">== </span><span class="s2">null</span><span class="s3">){</span>
+            <span class="s2">this</span><span class="s3">.</span><span class="s1">front </span><span class="s3">= </span><span class="s1">newNode</span><span class="s3">;</span>
+            <span class="s2">this</span><span class="s3">.</span><span class="s1">end </span><span class="s3">= </span><span class="s1">newNode</span><span class="s3">;</span>
+        <span class="s3">} </span><span class="s2">else</span><span class="s3">{</span>
+            <span class="s2">this</span><span class="s3">.</span><span class="s1">end</span><span class="s3">.</span><span class="s1">next </span><span class="s3">= </span><span class="s1">newNode</span><span class="s3">; </span><span class="s0">// add new node behind end</span>
+            <span class="s1">newNode</span><span class="s3">.</span><span class="s1">prev </span><span class="s3">= </span><span class="s2">this</span><span class="s3">.</span><span class="s1">end</span><span class="s3">;</span>
+            <span class="s2">this</span><span class="s3">.</span><span class="s1">end </span><span class="s3">= </span><span class="s1">newNode</span><span class="s3">;</span><span class="s0">// update pointer to new node</span>
+        <span class="s3">}</span>
+        <span class="s2">this</span><span class="s3">.</span><span class="s1">size</span><span class="s3">++;</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public void </span><span class="s1">add</span><span class="s3">(</span><span class="s2">int </span><span class="s1">index</span><span class="s3">, </span><span class="s2">int </span><span class="s1">value</span><span class="s3">) {</span>
+        <span class="s0">//This method adds value to the index slot of the linked list.</span>
+        <span class="s0">//You are not allowed to use any extra space of O(n) size.</span>
+        <span class="s0">//You can, and should, create helper methods to help with this method.</span>
+        <span class="s2">if </span><span class="s3">(</span><span class="s1">index </span><span class="s3">== </span><span class="s2">this</span><span class="s3">.</span><span class="s1">size</span><span class="s3">){</span>
+            <span class="s1">add</span><span class="s3">(</span><span class="s1">value</span><span class="s3">);</span>
+            <span class="s2">return</span><span class="s3">;</span>
+        <span class="s3">}</span>
+        <span class="s1">checkIndex</span><span class="s3">(</span><span class="s1">Index</span><span class="s3">); </span><span class="s0">// checks if index is valid for insertion</span>
+
+        <span class="s1">DoubleIntNode newNode </span><span class="s3">= </span><span class="s2">new </span><span class="s1">DoubleIntNode</span><span class="s3">(</span><span class="s1">value</span><span class="s3">); </span><span class="s0">// creates new node with the value</span>
+
+        <span class="s2">if </span><span class="s3">(</span><span class="s1">index </span><span class="s3">== </span><span class="s4">0</span><span class="s3">){</span><span class="s0">//insertion at the fornt</span>
+            <span class="s1">newNode</span><span class="s3">.</span><span class="s1">next </span><span class="s3">= </span><span class="s2">this</span><span class="s3">.</span><span class="s1">front</span><span class="s3">;</span>
+            <span class="s2">this</span><span class="s3">.</span><span class="s1">front</span><span class="s3">.</span><span class="s1">prev </span><span class="s3">= </span><span class="s1">newNode</span><span class="s3">;</span>
+            <span class="s2">this</span><span class="s3">.</span><span class="s1">front </span><span class="s3">= </span><span class="s1">newNode</span><span class="s3">;</span>
+        <span class="s3">}</span><span class="s2">else</span><span class="s3">{</span>
+            <span class="s1">DoubleIntNode current </span><span class="s3">= </span><span class="s2">this</span><span class="s3">.</span><span class="s1">front</span><span class="s3">;</span>
+
+            <span class="s2">for </span><span class="s3">(</span><span class="s2">int </span><span class="s1">i </span><span class="s3">= </span><span class="s4">0</span><span class="s3">; </span><span class="s1">i </span><span class="s3">&lt; </span><span class="s1">index </span><span class="s3">- </span><span class="s4">1</span><span class="s3">; </span><span class="s1">i</span><span class="s3">++){</span>
+                <span class="s1">current </span><span class="s3">= </span><span class="s1">current</span><span class="s3">.</span><span class="s1">next</span>
+            <span class="s3">}</span>
+            <span class="s1">newNode</span><span class="s3">.</span><span class="s1">next </span><span class="s3">= </span><span class="s1">current</span><span class="s3">.</span><span class="s1">next</span><span class="s3">;</span>
+            <span class="s1">newNode</span><span class="s3">.</span><span class="s1">prev</span><span class="s3">= </span><span class="s1">current</span><span class="s3">;</span>
+            <span class="s2">if</span><span class="s3">(</span><span class="s1">current</span><span class="s3">.</span><span class="s1">next </span><span class="s3">!= </span><span class="s2">null</span><span class="s3">){</span>
+                <span class="s1">current</span><span class="s3">.</span><span class="s1">next</span><span class="s3">.</span><span class="s1">prev </span><span class="s3">= </span><span class="s1">newNode</span><span class="s3">;</span>
+            <span class="s3">}</span>
+            <span class="s1">current</span><span class="s3">.</span><span class="s1">next</span><span class="s3">=</span><span class="s1">newNode</span><span class="s3">;</span>
+        <span class="s3">}</span>
+        <span class="s2">this</span><span class="s3">.</span><span class="s1">size</span><span class="s3">++;</span>
+    <span class="s3">}</span>
+
+    <span class="s0">//Part 3</span>
+    <span class="s2">public </span><span class="s1">String toString</span><span class="s3">(){</span>
+        <span class="s0">//Write a method to return correct string representation: [1,2,3].</span>
+        <span class="s0">//Be sure to get the format of the string correct.</span>
+        <span class="s2">if</span><span class="s3">(</span><span class="s2">this</span><span class="s3">.</span><span class="s1">front </span><span class="s3">== </span><span class="s2">null</span><span class="s3">){</span><span class="s0">// if this list is empty return empty bracket</span>
+            <span class="s2">return </span><span class="s5">&quot;[]&quot;</span><span class="s3">;</span>
+        <span class="s3">}</span>
+        <span class="s1">StringBuilder result </span><span class="s3">= </span><span class="s2">new </span><span class="s1">StringBuilder</span><span class="s3">();</span>
+        <span class="s1">result</span><span class="s3">.</span><span class="s1">append</span><span class="s3">(</span><span class="s5">&quot;[&quot;</span><span class="s3">); </span><span class="s0">// start with open bracket</span>
+        <span class="s1">DoubleIntNode current </span><span class="s3">= </span><span class="s2">this</span><span class="s3">.</span><span class="s1">front</span><span class="s3">; </span><span class="s0">// start traversing form front</span>
+        <span class="s2">while</span><span class="s3">(</span><span class="s1">current </span><span class="s3">!= </span><span class="s2">null</span><span class="s3">){</span>
+            <span class="s1">result</span><span class="s3">.</span><span class="s1">append</span><span class="s3">(</span><span class="s1">current</span><span class="s3">.</span><span class="s1">data</span><span class="s3">);</span>
+            <span class="s2">if </span><span class="s3">(</span><span class="s1">current</span><span class="s3">.</span><span class="s1">next </span><span class="s3">!=</span><span class="s2">null</span><span class="s3">){</span>
+                <span class="s1">result</span><span class="s3">.</span><span class="s1">append</span><span class="s3">(</span><span class="s5">&quot;,&quot;</span><span class="s3">);</span>
+            <span class="s3">}</span>
+            <span class="s1">current </span><span class="s3">= </span><span class="s1">current</span><span class="s3">.</span><span class="s1">next</span><span class="s3">;</span>
+        <span class="s3">}</span>
+
+        <span class="s1">result</span><span class="s3">.</span><span class="s1">append</span><span class="s3">(</span><span class="s5">&quot;]&quot;</span><span class="s3">);</span>
+        <span class="s2">return </span><span class="s1">result</span><span class="s3">.</span><span class="s1">toString</span><span class="s3">(); </span><span class="s0">// return final string representation</span>
+    <span class="s3">}</span>
+
+    <span class="s0">//Part 4</span>
+    <span class="s2">public void </span><span class="s1">set</span><span class="s3">(</span><span class="s2">int </span><span class="s1">index</span><span class="s3">, </span><span class="s2">int </span><span class="s1">value</span><span class="s3">){</span>
+        <span class="s0">//You are not allowed to create any new nodes.</span>
+        <span class="s1">chackIndex</span><span class="s3">(</span><span class="s1">index</span><span class="s3">); </span><span class="s0">//ensure index is valid</span>
+        <span class="s1">DoubleIntNode current </span><span class="s3">= </span><span class="s2">this</span><span class="s3">.</span><span class="s1">front</span><span class="s3">;</span>
+        <span class="s2">for </span><span class="s3">(</span><span class="s2">int </span><span class="s1">i</span><span class="s3">=</span><span class="s4">0</span><span class="s3">; </span><span class="s1">i </span><span class="s3">&lt; </span><span class="s1">index</span><span class="s3">; </span><span class="s1">i</span><span class="s3">++){</span>
+            <span class="s1">current </span><span class="s3">= </span><span class="s1">current</span><span class="s3">.</span><span class="s1">next</span><span class="s3">;</span>
+        <span class="s3">}</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public int </span><span class="s1">get</span><span class="s3">(</span><span class="s2">int </span><span class="s1">index</span><span class="s3">){</span>
+        <span class="s0">//Return value of the element at index.</span>
+        <span class="s0">//You must ensure the index is valid.</span>
+        <span class="s1">checkIndex</span><span class="s3">(</span><span class="s1">index</span><span class="s3">);</span>
+        <span class="s1">DoubleIntNode current </span><span class="s3">= </span><span class="s2">this</span><span class="s3">.</span><span class="s1">front</span><span class="s3">;</span>
+        <span class="s2">for </span><span class="s3">(</span><span class="s1">i</span><span class="s3">=</span><span class="s4">0</span><span class="s3">; </span><span class="s1">i </span><span class="s3">&lt; </span><span class="s1">index</span><span class="s3">;</span><span class="s1">i</span><span class="s3">++){</span>
+            <span class="s1">current </span><span class="s3">= </span><span class="s1">current</span><span class="s3">.</span><span class="s1">next</span><span class="s3">;</span>
+        <span class="s3">}</span>
+        <span class="s2">return </span><span class="s1">current</span><span class="s3">.</span><span class="s1">data</span><span class="s3">;</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public int </span><span class="s1">indexOf</span><span class="s3">(</span><span class="s2">int </span><span class="s1">value</span><span class="s3">){</span>
+        <span class="s0">//If the value is in the list, return the index of the first occurrence,</span>
+        <span class="s0">//otherwise return -1.</span>
+            <span class="s1">DoubleIntNode current </span><span class="s3">= </span><span class="s1">head</span><span class="s3">; </span><span class="s0">// Start from the head of the list</span>
+            <span class="s2">int </span><span class="s1">index </span><span class="s3">= </span><span class="s4">0</span><span class="s3">; </span><span class="s0">// Initialize the index counter</span>
+
+            <span class="s2">while </span><span class="s3">(</span><span class="s1">current </span><span class="s3">!= </span><span class="s2">null</span><span class="s3">) { </span><span class="s0">// Traverse the list</span>
+                <span class="s2">if </span><span class="s3">(</span><span class="s1">current</span><span class="s3">.</span><span class="s1">data </span><span class="s3">== </span><span class="s1">value</span><span class="s3">) { </span><span class="s0">// Check if the current node's data matches the value</span>
+                    <span class="s2">return </span><span class="s1">index</span><span class="s3">; </span><span class="s0">// Return the index if a match is found</span>
+                <span class="s3">}</span>
+                <span class="s1">current </span><span class="s3">= </span><span class="s1">current</span><span class="s3">.</span><span class="s1">next</span><span class="s3">; </span><span class="s0">// Move to the next node</span>
+                <span class="s1">index</span><span class="s3">++; </span><span class="s0">// Increment the index</span>
+            <span class="s3">}</span>
+
+            <span class="s2">return </span><span class="s3">-</span><span class="s4">1</span><span class="s3">; </span><span class="s0">// Return -1 if the value was not found</span>
+        <span class="s3">}</span>
+
+
+
+    <span class="s2">public boolean </span><span class="s1">isEmpty</span><span class="s3">(){</span>
+        <span class="s0">//Return true if the list is empty, false otherwise.</span>
+
+            <span class="s0">// Return true if the list is empty (size is 0 or head is null)</span>
+            <span class="s2">return </span><span class="s1">size </span><span class="s3">== </span><span class="s4">0</span><span class="s3">; </span><span class="s0">// or you could also check if head == null</span>
+
+
+    <span class="s3">}</span>
+
+    <span class="s0">//Part 5</span>
+    <span class="s2">public void </span><span class="s1">remove</span><span class="s3">(</span><span class="s2">int </span><span class="s1">index</span><span class="s3">){</span>
+        <span class="s0">//Remove the element at slot index from the list.</span>
+        <span class="s0">//You are not allowed to use any extra space of O(n) size.</span>
+        <span class="s0">//You can't create any new nodes, i.e. the &quot;new&quot; key word is not allowed.</span>
+        <span class="s0">//You can and should create helpers.</span>
+        <span class="s1">checkIndex</span><span class="s3">(</span><span class="s1">index</span><span class="s3">);</span>
+        <span class="s2">if </span><span class="s3">(</span><span class="s1">index </span><span class="s3">== </span><span class="s4">0</span><span class="s3">){</span>
+            <span class="s2">this</span><span class="s3">.</span><span class="s1">front </span><span class="s3">= </span><span class="s2">this</span><span class="s3">.</span><span class="s1">front</span><span class="s3">.</span><span class="s1">next</span><span class="s3">;</span>
+            <span class="s2">if </span><span class="s3">(</span><span class="s2">this</span><span class="s3">.</span><span class="s1">front </span><span class="s3">!= </span><span class="s2">null</span><span class="s3">){</span>
+                <span class="s2">this</span><span class="s3">.</span><span class="s1">front</span><span class="s3">.</span><span class="s1">prev </span><span class="s3">= </span><span class="s2">null</span><span class="s3">;</span>
+            <span class="s3">} </span><span class="s2">else </span><span class="s3">{</span>
+                <span class="s2">this</span><span class="s3">.</span><span class="s1">end </span><span class="s3">= </span><span class="s2">null</span><span class="s3">;</span>
+            <span class="s3">}</span>
+        <span class="s3">} </span><span class="s2">else if </span><span class="s3">(</span><span class="s1">index </span><span class="s3">== </span><span class="s2">this</span><span class="s3">.</span><span class="s1">size </span><span class="s3">-</span><span class="s4">1</span><span class="s3">){</span>
+            <span class="s2">this</span><span class="s3">.</span><span class="s1">end </span><span class="s3">= </span><span class="s2">this</span><span class="s3">.</span><span class="s1">end</span><span class="s3">.</span><span class="s1">prev</span><span class="s3">;</span>
+            <span class="s2">this</span><span class="s3">.</span><span class="s1">end</span><span class="s3">.</span><span class="s1">next </span><span class="s3">= </span><span class="s2">null</span><span class="s3">;</span>
+        <span class="s3">} </span><span class="s2">else</span><span class="s3">{</span>
+            <span class="s1">DoubleIntNode current </span><span class="s3">= </span><span class="s2">this</span><span class="s3">.</span><span class="s1">front</span><span class="s3">;</span>
+            <span class="s2">for </span><span class="s3">(</span><span class="s2">int </span><span class="s1">i </span><span class="s3">=</span><span class="s4">0</span><span class="s3">; </span><span class="s1">i</span><span class="s3">&lt;</span><span class="s1">index</span><span class="s3">; </span><span class="s1">i</span><span class="s3">++){</span>
+                <span class="s1">current </span><span class="s3">=</span><span class="s1">current</span><span class="s3">.</span><span class="s1">next</span><span class="s3">;</span>
+            <span class="s3">}</span>
+            <span class="s1">current</span><span class="s3">.</span><span class="s1">prev</span><span class="s3">.</span><span class="s1">next </span><span class="s3">= </span><span class="s1">current</span><span class="s3">.</span><span class="s1">next</span><span class="s3">;</span>
+            <span class="s1">current</span><span class="s3">.</span><span class="s1">next</span><span class="s3">.</span><span class="s1">prev</span><span class="s3">=</span><span class="s1">current</span><span class="s3">.</span><span class="s1">prev</span><span class="s3">;</span>
+        <span class="s3">}</span>
+        <span class="s2">this</span><span class="s3">.</span><span class="s1">size</span><span class="s3">--;</span>
+    <span class="s3">}</span>
+
+    <span class="s0">//Part 6</span>
+    <span class="s2">public void </span><span class="s1">sort</span><span class="s3">(){</span>
+        <span class="s0">//Use selection sort to put your list in order.</span>
+        <span class="s0">//After the method is complete, your list should be sorted.</span>
+        <span class="s0">//You are not allowed to use any extra space of O(n) size.</span>
+        <span class="s0">//You can't create any new nodes, i.e. the &quot;new&quot; key word is not allowed.</span>
+        <span class="s0">//You can and should create helpers.</span>
+        <span class="s0">//You are not allowed to use add or remove in this method.</span>
+        <span class="s2">if </span><span class="s3">(</span><span class="s2">this</span><span class="s3">.</span><span class="s1">size </span><span class="s3">&lt;</span><span class="s4">2</span><span class="s3">){</span>
+            <span class="s2">return</span><span class="s3">;</span>
+        <span class="s3">}</span>
+        <span class="s1">DoubleIntNode current </span><span class="s3">= </span><span class="s2">this</span><span class="s3">.</span><span class="s1">front</span><span class="s3">;</span>
+        <span class="s2">for </span><span class="s3">(</span><span class="s2">int </span><span class="s1">i </span><span class="s3">=</span><span class="s4">0</span><span class="s3">; </span><span class="s1">i </span><span class="s3">&lt; </span><span class="s2">this</span><span class="s3">.</span><span class="s1">size</span><span class="s3">-</span><span class="s4">1</span><span class="s3">; </span><span class="s1">i</span><span class="s3">++){</span>
+            <span class="s1">DoubleIntNoce minNode </span><span class="s3">= </span><span class="s1">current</span><span class="s3">;</span>
+            <span class="s1">DoubleIntNode searchNode </span><span class="s3">= </span><span class="s1">current</span><span class="s3">.</span><span class="s1">next</span><span class="s3">;</span>
+            <span class="s2">while</span><span class="s3">(</span><span class="s1">searchNode </span><span class="s3">!= </span><span class="s2">null</span><span class="s3">){</span>
+                <span class="s2">if </span><span class="s3">(</span><span class="s1">searchNode</span><span class="s3">.</span><span class="s1">data </span><span class="s3">&lt; </span><span class="s1">minNode</span><span class="s3">.</span><span class="s1">data</span><span class="s3">){</span>
+                    <span class="s1">minNode</span><span class="s3">= </span><span class="s1">searchNode</span><span class="s3">;</span>
+                <span class="s3">}</span>
+                <span class="s1">searchNode</span><span class="s3">=</span><span class="s1">searchNode</span><span class="s3">.</span><span class="s1">next</span><span class="s3">;</span>
+            <span class="s3">}</span>
+            <span class="s2">if </span><span class="s3">(</span><span class="s1">minNode </span><span class="s3">!= </span><span class="s1">current</span><span class="s3">){</span>
+                <span class="s2">int </span><span class="s1">temp </span><span class="s3">= </span><span class="s1">current</span><span class="s3">.</span><span class="s1">data</span><span class="s3">;</span>
+                <span class="s1">current</span><span class="s3">.</span><span class="s1">data </span><span class="s3">= </span><span class="s1">minNode</span><span class="s3">.</span><span class="s1">data</span><span class="s3">;</span>
+                <span class="s1">minNode</span><span class="s3">.</span><span class="s1">data </span><span class="s3">= </span><span class="s1">temp</span><span class="s3">;</span>
+            <span class="s3">}</span>
+            <span class="s1">current </span><span class="s3">= </span><span class="s1">current</span><span class="s3">.</span><span class="s1">next</span><span class="s3">;</span>
+        <span class="s3">}</span>
+    <span class="s3">}</span>
+<span class="s3">}</span>
+</pre>
+</body>
+</html>
